@@ -9,5 +9,10 @@ set(LEARN_OPENGL_THIRD_PARTY ${LEARN_OPENGL_ROOT}/3rd_party)
 set(LEARN_OPENGL_INCLUDE_DIR ${LEARN_OPENGL_ROOT})
 set(LEARN_OPENGL_INCLUDE_DIR_2 ${LEARN_OPENGL_ROOT}/include)
 
+install(DIRECTORY
+        "${LEARN_OPENGL_ROOT}/shaders"
+        DESTINATION
+        "${LEARN_OPENGL_INCLUDE_DIR}")
+
 add_subdirectory(3rd_party)
 add_subdirectory(tutorials)
