@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>USINGZ</title><script type="text/javascript" src="../CodeScripts/SyntaxHighlighter/scripts/shCore.js"></script><script type="text/javascript" src="../CodeScripts/SyntaxHighlighter/scripts/shBrushDelphi.js"></script><script type="text/javascript" src="../CodeScripts/SyntaxHighlighter/scripts/shBrushCpp.js"></script><script type="text/javascript" src="../CodeScripts/SyntaxHighlighter/scripts/shBrushCSharp.js"></script><link rel="stylesheet" type="text/css" href="../Styles/default.css"/><link rel="stylesheet" type="text/css" href="../Menu/menu.css"/><link rel="stylesheet" type="text/css" href="../CodeScripts/SyntaxHighlighter/styles/shCoreDefault.css"/><link rel="stylesheet" type="text/css" href="../CodeScripts/SyntaxHighlighter/styles/shThemeDefault.css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="text/javascript" src="../Menu/menu.js"></script><script type="text/javascript" src="../CodeScripts/bootstrap.js"></script>
+</head>
+<body bgcolor="#FFFFFF" onload="OnLoadEvent()">
+  <div class="menu" id="menu" onmouseleave="OnMouseLeaveEvent()"><a class="ancestor" href="_Body.htm">Index</a><a href="./Overview.htm">Overview</a><span class="submenu_owner" onmouseover="onSubmenuPopup(this)"><span class="submenu_heading">Units</span>
+      <div class="submenu_background"><a href="./Units/Clipper/_Body.htm">Clipper</a><a href="./Units/Clipper.Core/_Body.htm">Clipper.Core</a><a href="./Units/Clipper.Engine/_Body.htm">Clipper.Engine</a><a href="./Units/Clipper.Export/_Body.htm">Clipper.Export</a><a href="./Units/Clipper.Minkowski/_Body.htm">Clipper.Minkowski</a><a href="./Units/Clipper.Offset/_Body.htm">Clipper.Offset</a><a href="./Units/Clipper.RectClip/_Body.htm">Clipper.RectClip</a>
+      </div></span><a href="./Rounding.htm">Rounding</a><span class="active">USINGZ</span><a href="./FAQ.htm">FAQ</a><a href="./Trigonometry.htm">Trigonometry</a><a class="icon_container" id="icon_container" href="javascript:void(0)" onclick="hamburger()"><img id="menu_icon" src="../Menu/hamburger.svg"></a>
+  </div><br><br>
+
+  <h1>USINGZ</h1>
+  <p class="Decl"><span class="Language">Delphi</span>{$DEFINE USINGZ} </p>
+  <p class="Decl"><span class="Language"> C++</span>#define USINGZ</p>
+  <p class="Decl"><span class="Language">C#&nbsp;</span>#define USINGZ</p><br class="half">
+  <p> With regard to clipping solutions, occasionally users may need to identify vertices that have been created at path intersections and even assign user-defined data for these vertices. To facilitate this, in addition to X and Y coordinates, the pre-processor directive <span class="monobold2">USINGZ</span> will add a <span class="monobold2">Z</span> member to vertex definitions. (This <span class="monobold2">Z</span> is <i>not</i> a coordinate since it will only contain user-defined data.) With this USINGZ directive set, users will be able to assign Z values to vertices in subject and clip paths prior to clipping. And these Z values will be retained if these vertices appear in clipping solutions. And with a user defined <a href="./Units/Clipper.Engine/Classes/Clipper64/Properties/ZCallback.htm"><b>ZCallback</b></a> callback function, users can also assign Z values to new vertices in clipping solution (where vertices are created at path intersections).<br><br> There are C++ and C# examples of using <span class="monobold2">USINGZ</span> in respective <b>Examples</b> folders.<br><br> Note: USINGZ will have a small impact on performance, so the library's default is to leave this directive undefined.<br><br> </p>
+  <h2 id="Auto-SeeAlso">See Also</h2>
+  <p class="Body"><a href="Units/Clipper.Engine/Classes/Clipper64/Properties/ZCallback.htm">Clipper64.ZCallback</a>, <a href="Units/Clipper.Engine/Classes/ClipperD/Properties/ZCallback.htm">ClipperD.ZCallback</a></p>
+  <p class="Copyright" id="auto"> <br><br> Copyright &#169; 2010-2023 Angus Johnson &#160; - &#160; Clipper2 1.2.2 &#160; - &#160; Help file built on 26 Mar 2023<br><br> </p>
+
+</body>
+</html>

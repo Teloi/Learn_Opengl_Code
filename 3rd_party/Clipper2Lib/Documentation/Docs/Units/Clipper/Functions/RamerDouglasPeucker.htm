@@ -1,0 +1,34 @@
+<html>
+
+<head>
+
+  <title>RamerDouglasPeucker</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shCore.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushDelphi.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCpp.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCSharp.js"></script><link rel="stylesheet" type="text/css" href="../../../../Styles/default.css"/><link rel="stylesheet" type="text/css" href="../../../../Menu/menu.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shCoreDefault.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shThemeDefault.css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="text/javascript" src="../../../../Menu/menu.js"></script><script type="text/javascript" src="../../../../CodeScripts/bootstrap.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div class="menu" id="menu"><a class="ancestor" href="../../../_Body.htm">Index</a><a class="ancestor" href="../_Body.htm">Clipper</a><span class="active">RamerDouglasPeucker</span>
+  </div><br><br>
+
+  <h1>RamerDouglasPeucker</h1>
+  <p class="Decl"><span class="Language">Delphi</span> <b>function</b> RamerDouglasPeucker(<b>const</b> path: TPath64; epsilon: double): TPath64;</p>
+
+  <p class="Decl"><span class="Language">Delphi</span> <b>function</b> RamerDouglasPeucker(<b>const</b> paths: TPaths64; epsilon: double): TPaths64;</p><br class="half">
+  <p class="Decl"><span class="Language"> C++</span> <b>inline</b> Path&lt;T&gt; RamerDouglasPeucker(<b>const</b> Path&lt;T&gt;&amp; path, double epsilon);</p>
+
+  <p class="Decl"><span class="Language"> C++</span> <b>inline</b> Paths&lt;T&gt; RamerDouglasPeucker(<b>const</b> Paths&lt;T&gt;&amp; path, double epsilon);</p><br class="half">
+  <p class="Decl"><span class="Language">C#&nbsp;</span><b>public static</b> Path64 RamerDouglasPeucker(Path64 path, double epsilon);</p>
+
+  <p class="Decl"><span class="Language">C#&nbsp;</span><b>public static</b> Paths64 RamerDouglasPeucker(Paths64 path, double epsilon);</p><br class="half">
+
+  <p> This function is based on an <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm"><b>algorithm</b></a> of the same name, and is very useful in removing extraneous path vertices. Somewhat simplistically, vertices will be removed when they are less than <span class="monobold2">epsilon</span> distance from an imaginary lines passing through their adjacent vertices. Logically, larger <span class="monobold2">epsilon</span> values will remove vertices more aggressively.<br><br> <span class="maroon"><b> While this function was previously recommended to tidy up paths following <a href="./InflatePaths.htm"><b>offsetting</b></a> (ie inflating/shrinking), it's no longer recommended for this. Instead the <a href="./SimplifyPaths.htm"><b>SimplifyPaths</b></a> function is recommended because it's better suited when simplifying closed paths. (The <em>Ramer Douglas Peucker</em> algorithm was designed to simplify <em>open</em> paths, and has deficiencies when it's applied to closed paths.) </b></span> </p>
+
+  <h2 id="Auto-SeeAlso">See Also</h2>
+  <p class="Body"><a href="InflatePaths.htm">InflatePaths</a>, <a href="SimplifyPaths.htm">SimplifyPaths</a></p>
+  <p class="Copyright" id="auto"> <br><br> Copyright &#169; 2010-2023 Angus Johnson &#160; - &#160; Clipper2 1.2.2 &#160; - &#160; Help file built on 26 Mar 2023<br><br> </p>
+
+</body>
+
+</html>

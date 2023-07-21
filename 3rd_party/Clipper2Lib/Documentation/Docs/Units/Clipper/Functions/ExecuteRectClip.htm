@@ -1,0 +1,80 @@
+<html>
+
+<head>
+
+  <title>ExecuteRectClip</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shCore.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushDelphi.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCpp.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCSharp.js"></script><link rel="stylesheet" type="text/css" href="../../../../Styles/default.css"/><link rel="stylesheet" type="text/css" href="../../../../Menu/menu.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shCoreDefault.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shThemeDefault.css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="text/javascript" src="../../../../Menu/menu.js"></script><script type="text/javascript" src="../../../../CodeScripts/bootstrap.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF">
+  <div class="menu" id="menu"><a class="ancestor" href="../../../_Body.htm">Index</a><a class="ancestor" href="../_Body.htm">Clipper</a><span class="active">ExecuteRectClip</span>
+  </div><br><br>
+
+  <h1>ExecuteRectClip</h1>
+  <p class="Decl"><span class="Language">Delphi</span><b>function</b> ExecuteRectClip(<b>const</b> rect: TRect64; <b>const</b> subjects: TPaths64; convexOnly: Boolean = false): TPathsD;</p>
+
+  <p class="Decl"><span class="Language">Delphi</span><b>function</b> ExecuteRectClip(<b>const</b> rect: TRectD; <b>const</b> subjects: TPathsD; convexOnly: Boolean = false): TPathsD;</p>
+<br class="half">
+  <p class="Decl"><span class="Language"> C++</span>Paths64 ExecuteRectClip(<b>const</b> <a href="../Types/Rect64.htm"><b>Rect64</b></a> rect, <b>const</b> Paths64& subjects, bool convex_only = false);</p>
+
+  <p class="Decl"><span class="Language"> C++</span>PathsD ExecuteRectClip(<b>const</b> <a href="../Types/RectD.htm"><b>RectD</b></a> rect, <b>const</b> PathsD& subjects, bool convex_only = false);</p>
+<br class="half">
+  <p class="Decl"><span class="Language">C#&nbsp;</span><b>public static</b> <a href="../Types/Paths64.htm"><b>Paths64</b></a> ExecuteRectClip(Rect64 rect, Paths64 subjects, bool convexOnly = false);</p>
+
+  <p class="Decl"><span class="Language">C#&nbsp;</span><b>public static</b> <a href="../Types/PathsD.htm"><b>PathsD</b></a> ExecuteRectClip(RectD rect, PathsD subjects, bool convexOnly = false);</p>
+<br class="half">
+  <p> <b>ExecuteRectClip</b> is a specialised clipping function that uses a completely different clipping algorithm from the library's general purpose <a href="Intersect.htm"><b>Intersect</b></a> clipper. And it behaves in a number of different ways too. Firstly, it's <em>much</em> faster than the general purpose clipper (see below). However, as ExecuteRectClip's name implies, clipping regions must be rectangular. Also, subject polygons will only be clipped by the clipping boundary, and will have no affect on other subject polygons. And because <b>RectClip</b> preserves path orientation (winding direction), it's agnostic to filling rules. So the filling rule that applies to the subject polygons will automatically apply to the solution.<br><br> While <b>ExecuteRectClip</b> can clip any kind of polygon, it's generally not recommended for self-intersecting ones since those solutions will frequently contain lots of overlapping edges along clipping boundaries (that are needed to preserve path orientation). But <b>ExecuteRectClip</b> is ideal for clipping both convex and concave polygons that don't self-intersect. Setting the boolean <span class="monobold2">convexOnly</span> parameter to <span class="monobold">true</span> when subject polygons are known to be convex is recommended as this will further improve performance.<br><br> </p>
+  <h3>Additional notes:</h3><br>
+
+  <p> 1. ExecuteRectClip is agnostic to filling rules:<br> <img src="../../../../Images/RectClip0.svg" border="0"> <img src="../../../../Images/RectClipEO.svg" border="0"> <img src="../../../../Images/RectClipNZ.svg" border="0"> <br> </p>
+
+  <p> 2. <b>convexOnly</b> and concave polygons:<br><br> Enabling the optional <span class="monobold2">convexOnly</span> parameter will bypass extra processing that's very useful when clipping concave polygons. Polygons don't <em>have</em> to be convex when this parameter is true, but concave polygons that would normally be split into multiple polygons at clipping boundaries will remain as single polygons with potentially lots of overlapping edges along the boundary.<br> <img src="../../../../Images/RectClipConcave1.svg" border="0"> <img src="../../../../Images/RectClipConcave2.svg" border="0"><br> </p>
+
+  <p> 3. Performance:<br><br> <b>ExecuteRectClip</b> is <em>extremely fast</em> when compared to the Library's general purpose <a href="Intersect.htm"><b>Intersect</b></a> clipper. Where the general purpose clipper has roughly <b>O(n&sup3;)</b> performance, <b>ExecuteRectClip</b> has <b>O(n)</b> performance. <br><br> </p>
+  <p class="Body"> <img src="../../../../Images/RectClipChart.svg" alt="" border="0"> </p>
+  <p class="Body"> <img src="../../../../Images/RectClipChart2.svg" alt="" border="0"> </p>
+  <p> <br> 
+    <div class="pseudoTbl">
+
+      <pre class="brush: cpp;">
+#include "clipper2/clipper.h"  
+...
+using namespace Clipper2Lib;
+
+int main()
+{
+  srand (time(NULL));
+  Path64 shapes[3]; // 3 shapes => +, T, C
+  shapes[0] = MakePath({-10,-10, -10,-30, 10,-30, 10,-10, 
+      30,-10, 30,10, 10,10, 10,30, -10,30, -10,10, -30,10, -30,-10});
+  shapes[1] = MakePath({-10,30, -10,-10, -30,-10, -30,-30, 
+      30,-30, 30,-10, 10,-10, 10,30});
+  shapes[2] = MakePath({-30,-30, 30,-30, 30,-10, -10,-10, 
+      -10,10, 30,10, 30,30, -30,30});
+      
+  const int shape_cnt = 10000;
+  const int width = 400, height = 400, margin = 400 /6;
+  Rect64 rect = Rect64(margin, margin, width - margin, height - margin);
+  Paths64 subject;
+  subject.reserve(shape_cnt);
+  for (int i = 0; i &lt; shape_cnt; ++i)
+  {
+    subject.push_back(translatePath(
+      shapes[rand() % 3], 30 + rand(width -30), 
+      30 + rand(height -30)));
+  }
+  Paths64 solution = ExecuteRectClip(rect, subject, true);
+}
+      </pre>
+
+    </div> </p>
+  <p>  </p>
+  <h2 id="Auto-SeeAlso">See Also</h2>
+  <p class="Body"><a href="ExecuteRectClipLines.htm">ExecuteRectClipLines</a>, <a href="Intersect.htm">Intersect</a>, <a href="../Types/Paths64.htm">Paths64</a>, <a href="../Types/PathsD.htm">PathsD</a>, <a href="../Types/Rect64.htm">Rect64</a>, <a href="../Types/RectD.htm">RectD</a></p>
+  <p class="Copyright" id="auto"> <br><br> Copyright &#169; 2010-2023 Angus Johnson &#160; - &#160; Clipper2 1.2.2 &#160; - &#160; Help file built on 26 Mar 2023<br><br> </p>
+
+</body>
+
+</html>

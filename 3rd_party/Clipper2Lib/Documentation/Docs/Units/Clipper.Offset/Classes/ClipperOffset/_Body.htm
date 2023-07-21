@@ -1,0 +1,86 @@
+<html>
+<head>
+  <title>ClipperOffset</title>
+  <meta name="Ancestor" content="TObject"><script type="text/javascript" src="../../../../../CodeScripts/SyntaxHighlighter/scripts/shCore.js"></script><script type="text/javascript" src="../../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushDelphi.js"></script><script type="text/javascript" src="../../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCpp.js"></script><script type="text/javascript" src="../../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCSharp.js"></script><link rel="stylesheet" type="text/css" href="../../../../../Styles/default.css"/><link rel="stylesheet" type="text/css" href="../../../../../Menu/menu.css"/><link rel="stylesheet" type="text/css" href="../../../../../CodeScripts/SyntaxHighlighter/styles/shCoreDefault.css"/><link rel="stylesheet" type="text/css" href="../../../../../CodeScripts/SyntaxHighlighter/styles/shThemeDefault.css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="text/javascript" src="../../../../../Menu/menu.js"></script><script type="text/javascript" src="../../../../../CodeScripts/bootstrap.js"></script>
+</head>
+<body bgcolor="#FFFFFF">
+  <div class="menu" id="menu"><a class="ancestor" href="../../../../_Body.htm">Index</a><a class="ancestor" href="../../_Body.htm">Clipper.Offset</a><span class="active">ClipperOffset</span>
+  </div><br><br>
+
+  <h1>ClipperOffset</h1>
+  <h2>Ancestors</h2>
+  <div class="Hierarchy">TObject
+  </div><br><br>
+  <p class="Body"> Geometric <b>offsetting</b> refers to the process of creating <a href="https://en.wikipedia.org/wiki/Parallel_curve"><b>parallel curves</b></a> that are offset a specified distance from their primary curves.<br><br> The ClipperOffset class manages the process of offsetting (inflating/deflating) both open and closed paths using a number of different join types and end types. The library user will rarely need to access this unit directly since it will generally be easier to use the <a href="../../../Clipper/Functions/InflatePaths.htm"><b>InflatePaths</b></a> function when doing polygon offsetting.<br><br> <b>Notes:</b> <ol>
+      <li>When inflating, it's important not to confuse <b>EndType.Polygon</b> with <b>EndType.Join</b>. <b>EndType.Polygon</b> should only be used when inflating polygons (<em>closed</em> paths), and <b>EndType.Join</b> should only be used with <em>open</em> paths. (See <a href="../../../Clipper/Types/EndType.htm"><b>EndType</b></a> for more details.)</li>
+      <li>Inflated paths will often contain tiny segments that don't contribute to path shape. These can also represent tiny artefacts that are best removed. (See the <a href="../../../Clipper/Functions/RamerDouglasPeucker.htm"><b>RamerDouglasPeucker</b></a> function.)</li>
+      <li>Offsetting self-intersecting polygons will most likely produce unexpected results.</li>
+    </ol> </p>
+  <p class="Body"> 
+    <div class="pseudoTbl">
+      <div>C++ Example:
+      </div>
+      <pre class="brush: cpp;">
+#include "clipper2/clipper.h"  
+...
+using namespace Clipper2Lib;
+
+int main()
+{
+  Paths64 subj;
+  subj.push_back(MakePath({348,257  364,148  362,148 
+    326,241  295,219  258,88  440,129  370,196  372,275}));
+
+  Paths64 solution = InflatePaths(subj, -7, 
+    JoinType::Round, EndType::Polygon);
+      
+  //draw solution ...
+  DrawPolygons(solution, 0x4000FF00, 0xFF009900);
+}
+      </pre>
+    </div> </p>
+  <p class="Body"> <img src="../../../../../Images/offset1.png" alt="" width="310" height="314" border="0" align="right"> </p>
+  <h2 id="Auto-Reference">Reference</h2>
+  <p>
+    <table class="autoTbl">
+      <tr>
+        <th>Methods</th>
+        <th style="width: 100%;">Properties</th>
+      </tr>
+      <tr>
+        <td><a href="Functions/AddPath.htm">AddPath</a>
+        </td>
+        <td><a href="Properties/ArcTolerance.htm">ArcTolerance</a>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="Functions/AddPaths.htm">AddPaths</a>
+        </td>
+        <td><a href="Properties/MiterLimit.htm">MiterLimit</a>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="Functions/Clear.htm">Clear</a>
+        </td>
+        <td><a href="Properties/ReverseSolution.htm">ReverseSolution</a>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="Functions/Constructor.htm">Constructor</a>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="Functions/Execute.htm">Execute</a>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table></p>
+  <h2 id="Auto-SeeAlso">See Also</h2>
+  <p class="Body"><a href="../../../Clipper/Functions/InflatePaths.htm">InflatePaths</a>, <a href="../../../Clipper/Functions/RamerDouglasPeucker.htm">RamerDouglasPeucker</a>, <a href="../../../Clipper/Types/EndType.htm">EndType</a></p>
+  <p class="Copyright" id="auto"> <br><br> Copyright &#169; 2010-2023 Angus Johnson &#160; - &#160; Clipper2 1.2.2 &#160; - &#160; Help file built on 26 Mar 2023<br><br> </p>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>JoinType</title><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shCore.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushDelphi.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCpp.js"></script><script type="text/javascript" src="../../../../CodeScripts/SyntaxHighlighter/scripts/shBrushCSharp.js"></script><link rel="stylesheet" type="text/css" href="../../../../Styles/default.css"/><link rel="stylesheet" type="text/css" href="../../../../Menu/menu.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shCoreDefault.css"/><link rel="stylesheet" type="text/css" href="../../../../CodeScripts/SyntaxHighlighter/styles/shThemeDefault.css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"><script type="text/javascript" src="../../../../Menu/menu.js"></script><script type="text/javascript" src="../../../../CodeScripts/bootstrap.js"></script>
+</head>
+<body bgcolor="#FFFFFF">
+  <div class="menu" id="menu"><a class="ancestor" href="../../../_Body.htm">Index</a><a class="ancestor" href="../_Body.htm">Clipper</a><span class="active">JoinType</span>
+  </div><br><br>
+
+  <h1>JoinType</h1>
+  <p class="Decl"><span class="Language">Delphi</span> <b>type</b> TJoinType = (jtSquare, jtRound, jtMiter);</p>
+  <p class="Decl"><span class="Language"> C++</span> <b>enum</b> JoinType {Square, Round, Miter};</p>
+  <p class="Decl"><span class="Language">C#&nbsp;</span> <b>public enum</b> JoinType {Square, Round, Miter};</p><br class="half">
+  <p> The <b>JoinType</b> enumerator is only needed when <a href="../../Clipper.Offset/_Body.htm"><b>offsetting</b></a> (inflating/shrinking). It isn't needed for polygon clipping.<br><br> When adding paths to a <a href="../../Clipper.Offset/Classes/ClipperOffset/_Body.htm">ClipperOffset</a> object via the <a href="../../Clipper.Offset/Classes/ClipperOffset/Functions/AddPaths.htm">AddPaths</a> method, the joinType parameter may be any one of these types - Square, Round or Miter.<br><br> <img src="../../../../Images/JoinType_square.svg"> <img src="../../../../Images/JoinType_round.svg"> <img src="../../../../Images/JoinType_miter.svg"> 
+    <p align="center" class="Smaller" style="color: black;"> The angle at vertex A is more acute than the one at B and a mitered offset there would exceed 'miter limit'. </p> 
+    <ul>
+      <li><b>JoinType.Square</b>: Squaring is applied uniformally at all joins where the <em>internal</em> join angle is less that 90 degrees. The squared edge will be at exactly the offset distance from the join vertex.</li>
+      <li><b>JoinType.Round</b>: Rounding is applied to all joins that have convex external angles, and it maintains the exact offset distance from the join vertex.<br></li>
+      <li><b>JoinType.Miter</b>: There's a necessary limit to mitered joins (to avoid narrow angled joins producing excessively long and narrow <a href="../../Clipper.Offset/Classes/ClipperOffset/Properties/MiterLimit.htm"><b>spikes</b></a>). So where mitered joins would exceed a given maximum miter distance (relative to the offset distance), these are 'squared' instead.<br></li>
+    </ul> </p>
+  <h2 id="Auto-SeeAlso">See Also</h2>
+  <p class="Body"><a href="../../Clipper.Offset/_Body.htm">Clipper.Offset</a>, <a href="../../Clipper.Offset/Classes/ClipperOffset/_Body.htm">ClipperOffset</a>, <a href="../../Clipper.Offset/Classes/ClipperOffset/Functions/AddPaths.htm">ClipperOffset.AddPaths</a>, <a href="../../Clipper.Offset/Classes/ClipperOffset/Properties/MiterLimit.htm">ClipperOffset.MiterLimit</a></p>
+  <p class="Copyright" id="auto"> <br><br> Copyright &#169; 2010-2023 Angus Johnson &#160; - &#160; Clipper2 1.2.2 &#160; - &#160; Help file built on 26 Mar 2023<br><br> </p>
+
+</body>
+</html>

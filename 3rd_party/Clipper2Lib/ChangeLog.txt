@@ -1,0 +1,35 @@
+===================
+Clipper2 Change Log
+===================
+
+ver. 1.2.2
+26 Mar 2023
+    Numerous minor bug fixes: #422-#465
+
+ver. 1.2.0
+26 Feb 2023
+    Numerous minor bug fixes including:
+    #396, #399, #398, #401, #402, #405, #406, #407, #408, #411, #416, #418
+  
+ver. 1.1.0
+27 Jan 2023  
+  1. much improved merging of 'touching' polygons in clipping solutions
+  2. updated RectClip function that performs much faster intersect clipping 
+     when the clipping region is rectangular
+  3. numerous minor bug fixes  
+
+ver. 1.0.6
+28 Oct 2022
+  1. Added RectClip and RectClipLines functions for FAST rectangular clipping
+  2. Added clipper.export.h C++ file (for DLL/so creation)
+  3. Added DLL project files and Delphi test app.
+  4. Numerous minor bug fixes.
+
+ver. 1.0.5 
+2 Oct 2022
+  1. Numerous improvements to C++ makefile and revised C++ folder structure (#243, #247)
+  2. Fixed bug in C++ Point<T> constructor when USINGZ defined (#246)
+  3. Improved performance by removing time costly round() function calls (#236)
+  4. Changed Library's C# target framework back to netstandard2.0 (#225)
+  5. Updated several sample apps.
+
